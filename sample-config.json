@@ -1,0 +1,22 @@
+{
+  "bridge": {
+    "name": "Test Homebridge",
+    "username": "CC:22:3D:E3:CE:39",
+    "port": 51826,
+    "pin": "042-45-975"
+  },
+  "description": "This is an example configuration file with an Inkbird platform. It refers to a single Inkbird accessory of type IBSTH2.",
+  "platforms": [
+    {
+      "platform": "Inkbird",
+      "name": "Inkbird Sensor Platform for Homebridge",
+      "devices": [
+        {
+          "name": "Bathroom Climate",
+          "type": "IBSTH2",
+          "deviceId": "<<Ble MAC Address>>"
+        }
+      ]
+    }
+  ]
+}
