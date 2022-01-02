@@ -1,5 +1,5 @@
 {
-  "name": "@dwimberger/homebridge-particleio",
+  "name": "@dwimberger/homebridge-inkbird",
   "version": "1.0.0",
   "description": "Particle.io plugin for homebridge: https://github.com/nfarina/homebridge",
   "license": "ISC",
