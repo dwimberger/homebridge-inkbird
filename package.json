@@ -2,31 +2,34 @@
   "name": "@dwimberger/homebridge-inkbird",
   "version": "1.0.0",
   "description": "Inkbird plugin for homebridge: https://github.com/nfarina/homebridge",
-  "license": "ISC",
   "keywords": [
     "homebridge-plugin",
     "homebridge",
     "inkbird"
   ],
+  "homepage": "https://github.com/dwimberger/homebridge-inkbird#readme",
+  "bugs": {
+    "url": "https://github.com/dwimberger/homebridge-inkbird/issues"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/dwimberger/homebridge-inkbird.git"
   },
-  "bugs": {
-    "url": "https://github.com/dwimberger/homebridge-inkbird/issues"
-  },
+  "license": "MIT",
+  "author": "Dieter Wimberger",
+  "type": "commonjs",
   "main": "src/index.js",
   "scripts": {},
-  "engines": {
-    "node": ">=10.0.0",
-    "homebridge": ">=0.4.0"
-  },
   "dependencies": {
-    "@abandonware/noble": "^1.9.2-15",
+    "@stoprocent/noble": "^2.3.1",
     "hashmap": "^2.4.0"
   },
   "devDependencies": {
-    "hap-nodejs": "^0.4.21",
-    "homebridge": "^1.3.9"
+    "hap-nodejs": "^1.1.1",
+    "homebridge": "^1.9.0"
+  },
+  "engines": {
+    "node": ">=10.0.0",
+    "homebridge": ">=0.4.0"
   }
 }

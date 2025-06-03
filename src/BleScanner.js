@@ -1,5 +1,5 @@
 const Emitter = require('events');
-const noble = require('@abandonware/noble');
+const noble = require('@stoprocent/noble');
 
 class BleScanner extends Emitter {
 
