@@ -1,6 +1,6 @@
 {
   "name": "@dwimberger/homebridge-inkbird",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Inkbird plugin for homebridge: https://github.com/nfarina/homebridge",
   "keywords": [
     "homebridge-plugin",
