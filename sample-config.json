@@ -14,9 +14,13 @@
         {
           "name": "Bathroom Climate",
           "type": "IBSTH2",
-          "deviceId": "<<Ble MAC Address>>"
+          "deviceId": "<<Ble MAC Address>>",
+          "mnemonic": "BTRCL"
         }
-      ]
+      ],
+      "cache": {
+        "enabled": false
+      }
     }
   ]
 }

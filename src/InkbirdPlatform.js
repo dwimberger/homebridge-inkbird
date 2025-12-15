@@ -8,13 +8,27 @@ class InkbirdPlatform {
     this.accessToken = config.accessToken;
     this.devices = config.devices;
     this.myAccessories = [];
+    this.cache = {
+      enabled: false,
+      client: undefined
+    };
+
+    // Prepare cache if registered
+    if (config.cache || config.cache.enabled) {
+      try {
+        const redis = require('redis');
+        this.cache.client = redis.createClient(config.cache.url);
+      } catch (e) {
+        this.cache.enabled = false;
+      }
+    }
 
     // Boot scanner and register devices to scanner
     this.scanner = new BleScanner(this.log);
     for (let device of this.devices) {
       this.scanner.addDevice(device.deviceId);
       if (device.type === 'IBSTH2') {
-        let accessory = new IBSTH2Accessory(this.log, this.scanner, device, global.homebridge);
+        let accessory = new IBSTH2Accessory(this.log, this.scanner, device, global.homebridge, this.cache);
         this.myAccessories.push(accessory);
       }
     }

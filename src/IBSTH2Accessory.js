@@ -1,9 +1,11 @@
 class IBSTH2Accessory {
 
-  constructor(log, scanner, device, homebridge) {
+  constructor(log, scanner, device, homebridge, cache) {
 
     this.log = log;
+    this.cache = cache;
     this.name = device.name;
+    this.mnemonic = device.mnemonic;
     this.currentTemperature = 0;
     this.currentRelativeHumidity = 0;
     this.currentBatteryLevel = 0;
@@ -50,6 +52,12 @@ class IBSTH2Accessory {
     this.currentBatteryLevel = data.battery;
     this.currentTemperature = data.temperature;
     this.currentRelativeHumidity = data.humidity;
+    // store latest value
+    if (this.cache && this.cache.enabled === true && this.cache.client) {
+      this.cache.client.set(`homebridge:${this.mnemonic}:temp`,  `${this.currentTemperature}`);
+      this.cache.client.set(`homebridge:${this.mnemonic}:relhum`,  `${this.currentRelativeHumidity}`);
+      this.cache.client.set(`homebridge:${this.mnemonic}:batterylevel`,  `${this.currentBatteryLevel}`);
+    }
   }
 
   getServices() {

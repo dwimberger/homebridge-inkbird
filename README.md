@@ -26,14 +26,36 @@ The plugin is a platform that has to be defined in the `config.json` file. The p
         {
           "name": "Bathroom Climate",
           "type": "IBSTH2",
-          "deviceId": "<<Ble MAC Address>>"
+          "deviceId": "<<Ble MAC Address>>",
+          "mnemonic": "BTRC"
         }
-      ]
+      ],
+      "cache": {
+        "enabled": false
+      }
     }
   ]
 }
 ```
 
-Note that the `deviceId`  should hold the BLE Mac Address of the sensor accessory.
+Note that the `deviceId` should hold the BLE Mac Address of the sensor accessory.
 
+Note that the `mnemonic` will be used as a key for caching.
 
+# Caching
+
+The latest version adds a possibility to expose values globally through caching in a REDIS store. This allows other parts of your system to access and use them independently.
+
+```
+      "cache": {
+        "enabled": true,
+        "url": "redis[s]://[[username][:password]@][host][:port][/db-number]"
+      }
+```
+
+The mechanism will use the following keys for each accessory:
+* homebridge:{mnemonic}:temp
+* homebridge:{mnemonic}:relhum
+* homebridge:{mnemonic}:batterylevel
+
+If the connection fails, the cache will be disabled.
