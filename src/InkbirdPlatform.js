@@ -1,5 +1,6 @@
 const BleScanner = require('./BleScanner.js');
 const IBSTH2Accessory = require('./IBSTH2Accessory.js');
+const redis = require('@redis/client');
 
 class InkbirdPlatform {
 
@@ -15,16 +16,23 @@ class InkbirdPlatform {
 
     // Prepare cache if registered
     if (config.cache && config.cache.enabled) {
+      this.log(`Preparing REDIS cache`);
       try {
-        const redis = require('@redis/client');
         this.cache.client = redis.createClient(config.cache.url);
         this.cache.enabled = true;
-        this.cache.client.connect().then(() => {
-          this.log(`Connected to Redis cache`);
-        });
+        this.cache.client.connect()
+            .then(() => {
+              this.log(`Connected to Redis cache`);
+            })
+            .catch((error) => {
+              this.log(`${error.message} occurred while connecting to REDIS`);
+            });
       } catch (e) {
+        this.log(`${e.message} occurred while preparing REDIS cache`);
         this.cache.enabled = false;
       }
+    } else {
+      this.log(`REDIS cache not configured or disabled`);
     }
 
     // Boot scanner and register devices to scanner
