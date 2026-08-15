@@ -9,7 +9,6 @@ class IBSTH2Accessory {
     this.currentTemperature = 0;
     this.currentRelativeHumidity = 0;
     this.currentBatteryLevel = 0;
-    this.currentBatteryLowStatus;
 
     scanner.on(device.deviceId, this._handleDeviceEvent.bind(this));
 

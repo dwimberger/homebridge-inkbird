@@ -1,6 +1,6 @@
 {
   "name": "@dwimberger/homebridge-inkbird",
-  "version": "1.1.0",
+  "version": "2.0.0",
   "description": "Inkbird plugin for homebridge: https://github.com/nfarina/homebridge",
   "keywords": [
     "homebridge-plugin",
@@ -21,13 +21,13 @@
   "main": "src/index.js",
   "scripts": {},
   "dependencies": {
-    "@redis/client": "^5.10.0",
-    "@stoprocent/noble": "^2.3.10",
-    "hashmap": "^2.4.0"
+    "@redis/client": "^6.2.1",
+    "@stoprocent/noble": "^2.7.1",
+    "hashmap": "^3.0.1"
   },
   "devDependencies": {
-    "hap-nodejs": "^1.2.0",
-    "homebridge": "^1.11.1"
+    "hap-nodejs": "^0.14.3",
+    "homebridge": "^2.3.1"
   },
   "engines": {
     "node": ">=10.0.0",
