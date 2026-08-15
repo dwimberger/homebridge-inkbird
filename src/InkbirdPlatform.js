@@ -14,11 +14,14 @@ class InkbirdPlatform {
     };
 
     // Prepare cache if registered
-    if (config.cache || config.cache.enabled) {
+    if (config.cache && config.cache.enabled) {
       try {
         const redis = require('@redis/client');
         this.cache.client = redis.createClient(config.cache.url);
         this.cache.enabled = true;
+        this.cache.client.connect().then(() => {
+          this.log(`Connected to Redis cache`);
+        });
       } catch (e) {
         this.cache.enabled = false;
       }
