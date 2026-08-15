@@ -18,7 +18,10 @@ class InkbirdPlatform {
     if (config.cache && config.cache.enabled) {
       this.log(`Preparing REDIS cache`);
       try {
-        this.cache.client = redis.createClient(config.cache.url);
+        this.cache.client = redis.createClient(
+            {
+              url: config.cache.url
+            });
         this.cache.enabled = true;
         this.cache.client.connect()
             .then(() => {
