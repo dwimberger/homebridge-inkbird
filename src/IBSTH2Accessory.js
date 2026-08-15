@@ -52,10 +52,15 @@ class IBSTH2Accessory {
     this.currentTemperature = data.temperature;
     this.currentRelativeHumidity = data.humidity;
     // store latest value
-    if (this.cache && this.cache.enabled === true && this.cache.client && this.cache.client.isPartsReady) {
-      this.cache.client.set(`homebridge:${this.mnemonic}:temp`,  `${this.currentTemperature}`);
-      this.cache.client.set(`homebridge:${this.mnemonic}:relhum`,  `${this.currentRelativeHumidity}`);
-      this.cache.client.set(`homebridge:${this.mnemonic}:batterylevel`,  `${this.currentBatteryLevel}`);
+    if (this.cache && this.cache.enabled === true && this.cache.client) {
+      try {
+        this.cache.client.set(`homebridge:${this.mnemonic}:temp`, `${this.currentTemperature}`);
+        this.cache.client.set(`homebridge:${this.mnemonic}:relhum`, `${this.currentRelativeHumidity}`);
+        this.cache.client.set(`homebridge:${this.mnemonic}:batterylevel`, `${this.currentBatteryLevel}`);
+        this.log(`Updated cached ${this.mnemonic} values`);
+      } catch (e) {
+        this.log(`${e.message} occurred while updating the cache.`);
+      }
     }
   }
 
